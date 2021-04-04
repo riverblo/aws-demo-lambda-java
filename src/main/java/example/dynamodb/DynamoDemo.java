@@ -1,8 +1,8 @@
 package example.dynamodb;
 
-import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
@@ -40,9 +40,9 @@ public class DynamoDemo implements RequestHandler<PersonRequest, PersonResponse>
   }
 
   private void initDynamoDbClient() {
-    // TODO: 後で書き換える
-    AmazonDynamoDBClient client = new AmazonDynamoDBClient();
-    client.setRegion(Region.getRegion(REGION));
+    AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
+        .withRegion(REGION)
+        .build();
     this.dynamoDb = new DynamoDB(client);
   }
 
