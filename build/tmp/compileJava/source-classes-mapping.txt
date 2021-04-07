@@ -1,6 +1,0 @@
-example/dynamodb/DynamoDemo.java
- example.dynamodb.DynamoDemo
-example/dynamodb/PersonResponse.java
- example.dynamodb.PersonResponse
-example/dynamodb/PersonRequest.java
- example.dynamodb.PersonRequest
