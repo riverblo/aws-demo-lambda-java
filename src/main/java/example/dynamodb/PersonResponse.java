@@ -1,9 +1,11 @@
 package example.dynamodb;
 
-import lombok.Setter;
+import lombok.Data;
 
-@Setter
+@Data
 public class PersonResponse {
 
+  private String person_id;
+  private String name;
   private String message;
 }
