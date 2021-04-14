@@ -42,20 +42,24 @@ public class DynamoDemo implements RequestHandler<PersonRequest, PersonResponse>
         "}");
     System.out.println("invokeRequest");
     System.out.println(invokeRequest);
+
     InvokeResult invokeResult;
     PersonRequest upperRequest = null;
     try {
+      // 接続準備
       AWSLambda awsLambda = AWSLambdaClientBuilder.standard()
         .withRegion(REGION).build();
-
+      // Lambda呼び出し
       invokeResult = awsLambda.invoke(invokeRequest);
       System.out.println("invokeResult");
       System.out.println(invokeResult);
 
+      // LambdaのレスポンスをByteBufferからStringに
       String resultJson = new String(invokeResult.getPayload().array(), StandardCharsets.UTF_8);
       //write out the return value
       System.out.println("resultJson");
       System.out.println(resultJson);
+      // DynamoDBのリクエストづくり（マッピング）
       upperRequest = mapper.readValue(resultJson, PersonRequest.class);
       System.out.println("upperRequest");
       System.out.println(upperRequest);
